@@ -6,10 +6,10 @@ end
 
 function arms:OnInitialize()
     -- Called when the addon is loaded
-    self:Print("DOT LOADED: Arms-1.0")
+    self:Print("DOT LOADED: Arms-1.1")
 
     spells = {  }
-    spells["Avatar"] =              {r = 0}, {g = 0}, {b = 0}  
+    spells["Avatar"] =              {r = 0, g = 0, b = 0}  
     spells["Battle Shout"] =        {r = 0}, {g = 0}, {b = 0}
     spells["Battle Stance"] =       {r = 0}, {g = 0}, {b = 0}
     spells["Berserker Rage"] =      {r = 0}, {g = 0}, {b = 0}
@@ -50,23 +50,24 @@ function arms:OnInitialize()
 end
 
 function arms:OnEnable()
+    square_size = 20
     local f = CreateFrame( "Frame" , "one" , UIParent )
     f:SetFrameStrata( "HIGH" )
-    f:SetWidth( 30 )
-    f:SetHeight( 15 )
-    f:SetPoint( "TOPLEFT" , 15 , 0 )
+    f:SetWidth( square_size * 2 )
+    f:SetHeight( square_size )
+    f:SetPoint( "TOPLEFT" , square_size * 2/2 , 0 )
     
     self.two = CreateFrame( "StatusBar" , nil , f )
     self.two:SetPoint( "TOPLEFT" )
-    self.two:SetWidth( 15 )
-    self.two:SetHeight( 15 )
+    self.two:SetWidth( square_size )
+    self.two:SetHeight( square_size )
     self.two:SetStatusBarTexture("Interface\\AddOns\\thedot\\Images\\Gloss")
     self.two:SetStatusBarColor( 1 , 1 , 1 )
     
     self.three = CreateFrame( "StatusBar" , nil , f )
-    self.three:SetPoint( "TOPLEFT" , 15 , 0)
-    self.three:SetWidth( 15 )
-    self.three:SetHeight( 15 )
+    self.three:SetPoint( "TOPLEFT" , square_size , 0)
+    self.three:SetWidth( square_size )
+    self.three:SetHeight( square_size )
     self.three:SetStatusBarTexture("Interface\\AddOns\\thedot\\Images\\Gloss")
     self.three:SetStatusBarColor( 1 , 1 , 1 )
     
@@ -169,6 +170,11 @@ function arms:COMBAT_LOG_EVENT_UNFILTERED()
                 nextCast = "Colossus Smash"
             end
         end
+
+        vr, vrcooldown = canCastNow( "Victory Rush")
+        if vr == true then
+            nextCast = "Victory Rush"
+        end
             
         hs, hscooldown = canCastNow( "Heroic Strike")
         if rage > 105 and hs == true then
@@ -262,7 +268,7 @@ function arms:COMBAT_LOG_EVENT_UNFILTERED()
     red = 0
     green = 0
     blue = 0
-    self.three:SetStatusBarColor( red/255, green/255, blue/255 );
+    self.three:SetStatusBarColor( red/255, 127/255, blue/255 );
 end
 
 function GetColorCode(inSpell)
