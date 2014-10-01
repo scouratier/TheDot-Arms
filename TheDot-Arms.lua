@@ -50,12 +50,12 @@ function arms:OnInitialize()
 end
 
 function arms:OnEnable()
-    square_size = 20
+    square_size = 5
     local f = CreateFrame( "Frame" , "one" , UIParent )
     f:SetFrameStrata( "HIGH" )
     f:SetWidth( square_size * 2 )
     f:SetHeight( square_size )
-    f:SetPoint( "TOPLEFT" , square_size * 2/2 , 0 )
+    f:SetPoint( "TOPLEFT" , square_size * 2 , 0 )
     
     self.two = CreateFrame( "StatusBar" , nil , f )
     self.two:SetPoint( "TOPLEFT" )
