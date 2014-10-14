@@ -50,7 +50,7 @@ function arms:OnInitialize()
 end
 
 function arms:OnEnable()
-    square_size = 5
+    square_size = 15
     local f = CreateFrame( "Frame" , "one" , UIParent )
     f:SetFrameStrata( "HIGH" )
     f:SetWidth( square_size * 2 )
