@@ -6,7 +6,7 @@ end
 
 function arms:OnInitialize()
     -- Called when the addon is loaded
-    self:Print("DOT LOADED: Arms-1.1")
+    self:Print("DOT LOADED: Arms-1.2")
 
     spells = {  }
     spells["Avatar"] =              {r = 0, g = 0, b = 0}  
@@ -83,7 +83,7 @@ end
 function canCastNow(inSpell)
     local start, duration, enable
     local usable, noRage = IsUsableSpell( inSpell )
-        if usable == 1 then
+        if usable == true then
             start, duration, enable = GetSpellCooldown( inSpell )
             if start == 0 then
                 return true , 0
@@ -122,7 +122,7 @@ function arms:COMBAT_LOG_EVENT_UNFILTERED()
     local Trinket = false
 		
     -- are we in combat
-    if InCombatLockdown() == 1 or UnitAffectingCombat("focus") == 1 then
+    if InCombatLockdown() == true or UnitAffectingCombat("focus") == true then
         rage = UnitMana("player")
 
 		local cs, csrank, csicon, cscount, csdebuffType, csduration, csexpirationTime, csisMine, csisStealable  = UnitDebuff("target","Colossus Smash");
@@ -206,7 +206,7 @@ function arms:COMBAT_LOG_EVENT_UNFILTERED()
         --if UnitExists( "target" ) then 
         local c, ccooldown = canCastNow( "Charge" )
         local crange = IsSpellInRange( "Charge" , "target" )
-        if c == true and crange == 1 then
+        if c == true and crange == true then
             nextCast = "Charge"
         else
             --self:Print("Not in range")
