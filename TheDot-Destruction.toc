@@ -1,6 +1,6 @@
 ## Interface: 40100
-## Title: The Dot <Warrior:Arms>
-## Notes: Processes Events for Arms Warrior
+## Title: The Dot <Warlock:Destruction>
+## Notes: Processes Events for Destruction Warlocks
 ## Author: Team loob
 ## DefaultState: enabled
 ## LoadOnDemand: 1
@@ -9,5 +9,5 @@
 
 embeds.xml
 
-TheDot-Arms.lua
-TheDot-Arms.xml
+TheDot-Destruction.lua
+TheDot-Destruction.xml
